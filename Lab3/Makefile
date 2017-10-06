@@ -1,14 +1,14 @@
-CC = g++
-cFlags = -std=c++11 -pthread -o signal.cpp
-cFiles = Semaphore.cpp signal.cpp
-hFiles = Semaphore.h
+CC=g++
+CFLAGS= -std=c++11 -pthread -I.
 
-all: $(cFiles) $(hFiles)
-	$(CC) $(cFlags) $(cFiles) -o signal
+%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-DEBUG: DEBUGFLAGS = -DDEBUG
+ALL: Semaphore.o signal.o
+	$(CC) -o signal Semaphore.o signal.o $(CFLAGS) $(DEBUGFLAGS) 
+
+DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
 
-clean:
-	rm *.o 
-
+CLEAN:
+	rm *.o
