@@ -2,34 +2,25 @@
 #include <iostream>
 #include <thread>
 
-void taskOne(std::shared_ptr<Semaphore> firstSem,std::shared_ptr<Semaphore>  secondSem){
-  std::cout <<"I ";
-  std::cout << "must ";
-  secondSem->Signal();
-  firstSem->Wait();
-  std::cout << "print ";
-  std::cout << "first"<<std::endl;
-  secondSem->Signal();
-}
-void taskTwo(std::shared_ptr<Semaphore> firstSem, std::shared_ptr<Semaphore> secondSem){
-  secondSem->Wait();
-  std::cout <<"This ";
-  std::cout << "will ";
-  firstSem->Signal();
-  secondSem->Wait();
-  std::cout << "appear ";
-  std::cout << "second"<<std::endl;
+int count = 1;
+
+void checkIn(std::shared_ptr<Semaphore> theSemaphore){
+  theSemaphore->Wait();
+  std::cout << "number " << count << " logged in\n";
+  count++;
+  theSemaphore->Signal();
 }
 
-int main(void){
-  std::thread threadOne, threadTwo;
-  std::shared_ptr<Semaphore> sem1( new Semaphore);
-  std::shared_ptr<Semaphore> sem2( new Semaphore);
+int main(void){ 
+  std::thread threadOne, threadTwo, threadThree;
+  std::shared_ptr<Semaphore> sem( new Semaphore(1));
   /**< Launch the threads  */
-  threadOne=std::thread(taskTwo,sem1,sem2);
-  threadTwo=std::thread(taskOne,sem1,sem2);
   std::cout << "Launched from the main\n";
+  threadOne = std::thread (checkIn,sem);
+  threadTwo = std::thread (checkIn,sem);
+  threadThree = std::thread (checkIn,sem);
   threadOne.join();
   threadTwo.join();
+  threadThree.join();
   return 0;
 }

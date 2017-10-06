@@ -6,6 +6,9 @@ hFiles = Semaphore.h
 all: $(cFiles) $(hFiles)
 	$(CC) $(cFlags) $(cFiles) -o signal
 
+DEBUG: DEBUGFLAGS = -DDEBUG
+DEBUG: ALL
+
 clean:
-	rm*.0
+	rm *.o 
 
