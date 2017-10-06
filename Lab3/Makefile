@@ -10,5 +10,5 @@ DEBUG: DEBUGFLAGS = -DDEBUG
 DEBUG: ALL
 
 clean:
-	rm *.o all
+	rm *.o 
 
