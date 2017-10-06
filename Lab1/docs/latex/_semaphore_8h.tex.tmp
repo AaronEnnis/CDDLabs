@@ -1,0 +1,14 @@
+\hypertarget{_semaphore_8h}{}\section{/home/aaron/\+Documents/\+Concurreny labs/\+C\+D\+D\+Labs/\+Lab1/\+Semaphore.h File Reference}
+\label{_semaphore_8h}\index{/home/aaron/\+Documents/\+Concurreny labs/\+C\+D\+D\+Labs/\+Lab1/\+Semaphore.\+h@{/home/aaron/\+Documents/\+Concurreny labs/\+C\+D\+D\+Labs/\+Lab1/\+Semaphore.\+h}}
+{\ttfamily \#include $<$mutex$>$}\\*
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+Include dependency graph for Semaphore.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_semaphore}{Semaphore}
+\begin{DoxyCompactList}\small\item\em A \hyperlink{class_semaphore}{Semaphore} Implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
