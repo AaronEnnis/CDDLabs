@@ -27,7 +27,7 @@ void barrierFunction(std::shared_ptr<Semaphore> mutex,std::shared_ptr<Semaphore>
     barrier1->Wait();
     barrier1->Signal();
 
-    threadArray[count]=std::thread(taskOne);
+    taskOne();
 
     mutex->Wait();
     count--;
@@ -40,7 +40,7 @@ void barrierFunction(std::shared_ptr<Semaphore> mutex,std::shared_ptr<Semaphore>
     barrier2->Wait();
     barrier2->Signal();
 
-    threadArray[count]=std::thread(taskTwo);
+    taskTwo();
   }
 
 
