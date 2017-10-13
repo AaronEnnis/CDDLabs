@@ -13,12 +13,12 @@ void taskTwo(){
   std::cout << "second " << count << "\n";
 }
 
-void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int arraySize){
+void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int threadAmount){
   
     while(condition){
     mutex->Wait();
     count++;
-    if(count == arraySize){
+    if(count == threadAmount){
       barrier2->Wait();
       barrier1->Signal();      
     }
