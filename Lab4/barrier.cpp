@@ -2,25 +2,34 @@
 #include <iostream>
 #include <thread>
 
-int count = 1;
+int count = 0;
+bool condition = true;
 
-void checkIn(std::shared_ptr<Semaphore> theSemaphore){
+void taskOne(std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2){
   theSemaphore->Wait();
   std::cout << "number " << count << " logged in\n";
   count++;
   theSemaphore->Signal();
 }
 
-int main(void){ 
-  std::thread threadOne, threadTwo, threadThree;
-  std::shared_ptr<Semaphore> sem( new Semaphore(1));
+void taskTwo(std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2){
+  theSemaphore->Wait();
+  std::cout << "number " << count << " logged in\n";
+  count--;
+  theSemaphore->Signal();
+}
+
+int main(void){
+  std::thread threadArray[10];
+  std::shared_ptr<Semaphore> mutex( new Semaphore(1));
+  std::shared_ptr<Semaphore> barrier1( new Semaphore(0));
+  std::shared_ptr<Semaphore> barrier2( new Semaphore(1));
   /**< Launch the threads  */
-  std::cout << "Launched from the main\n";
-  threadOne = std::thread (checkIn,sem);
-  threadTwo = std::thread (checkIn,sem);
-  threadThree = std::thread (checkIn,sem);
-  threadOne.join();
-  threadTwo.join();
-  threadThree.join();
+  while(condition){
+    threadArray=std::thread(taskOne,mutex,barrier1,barrier2);
+
+    threadArray=std::thread(taskTwo,mutex,barrier1,barrier2);
+  }
+
   return 0;
 }
