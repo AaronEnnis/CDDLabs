@@ -5,15 +5,18 @@
 int count = 0;
 bool condition = true;
 
+/*! diaplays the first function in the barrier being executed */
 void taskOne(){
   std::cout << "first " << count << "\n";
 }
 
+/*! diaplays the second function in the barrier being executed */
 void taskTwo(){
   std::cout << "second " << count << "\n";
 }
 
-void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int threadAmount){
+/*! creates a barrier for the threads for 2 functions */ 
+void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int threadAmount){ 
   
     while(condition){
     mutex->Wait();
@@ -46,9 +49,9 @@ void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore
 
 int main(void){
   std::thread thread1, thread2, thread3, thread4, thread5;
-  std::shared_ptr<Semaphore> mutex( new Semaphore(1));
-  std::shared_ptr<Semaphore> barrier1( new Semaphore(0));
-  std::shared_ptr<Semaphore> barrier2( new Semaphore(1));
+  std::shared_ptr<Semaphore> mutex( new Semaphore(1)); /*!< mutex lock*/
+  std::shared_ptr<Semaphore> barrier1( new Semaphore(0)); /*!< first barrier*/
+  std::shared_ptr<Semaphore> barrier2( new Semaphore(1)); /*!< second barrier*/
   /**< Launch the threads  */
 
   thread1=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
