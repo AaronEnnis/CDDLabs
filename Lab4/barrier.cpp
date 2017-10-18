@@ -1,6 +1,7 @@
 #include "Semaphore.h"
 #include <iostream>
 #include <thread>
+#include <vector>
 
 int count = 0;
 bool condition = true;
@@ -16,12 +17,13 @@ void taskTwo(){
 }
 
 /*! creates a barrier for the threads for 2 functions */ 
-void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int threadAmount){ 
+void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads){
   
     while(condition){
+      
     mutex->Wait();
     count++;
-    if(count == threadAmount){
+    if(count == num_of_threads){
       barrier2->Wait();
       barrier1->Signal();      
     }
@@ -48,23 +50,23 @@ void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore
 }
 
 int main(void){
-  std::thread thread1, thread2, thread3, thread4, thread5;
+
   std::shared_ptr<Semaphore> mutex( new Semaphore(1)); /*!< mutex lock*/
   std::shared_ptr<Semaphore> barrier1( new Semaphore(0)); /*!< first barrier*/
   std::shared_ptr<Semaphore> barrier2( new Semaphore(1)); /*!< second barrier*/
-  /**< Launch the threads  */
 
-  thread1=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
-  thread2=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
-  thread3=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
-  thread4=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
-  thread5=std::thread(barrierFunction, mutex, barrier1, barrier2, 5);
+  int num_of_threads;
+  std::cout << "input number of threads" << std::endl;
+  std::cin >> num_of_threads;
+  std::vector<std::thread> threadsArray(num_of_threads);
 
-  thread1.join();
-  thread2.join();
-  thread3.join();
-  thread4.join();
-  thread5.join();
-  
+  for(int i = 0; i < threadsArray.size(); i++){
+  threadsArray[i]=std::thread(barrierFunction,mutex,barrier1,barrier2, threadsArray.size());
+  }
+
+  for(int i = 0; i < threadsArray.size(); i++){
+    threadsArray[i].join();
+  }
+ 
   return 0;
 }
