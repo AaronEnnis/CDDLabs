@@ -2,8 +2,15 @@
 #include <iostream>
 #include <thread>
 
-int count = 1;
+/*! \class Signal
+    \brief An Implementation of a mutex lock Using Semaphores 
 
+   Uses C++11 features such as mutex and condition variables to implement a mutex lock using Semaphores
+
+*/
+/*!< global count for checkIn() function*/
+int count = 1; 
+/*! Only allows one thread to access the global variable 'count' at a time*/
 void checkIn(std::shared_ptr<Semaphore> theSemaphore){
   theSemaphore->Wait();
   std::cout << "number " << count << " logged in\n";
