@@ -1,0 +1,97 @@
+\hypertarget{barrier_8cpp}{}\section{barrier.\+cpp File Reference}
+\label{barrier_8cpp}\index{barrier.\+cpp@{barrier.\+cpp}}
+{\ttfamily \#include \char`\"{}Semaphore.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$thread$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+Include dependency graph for barrier.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{barrier_8cpp_a4d4cd4393ba562b64d603d628d837994}{task\+One} ()
+\item 
+void \hyperlink{barrier_8cpp_a6f85eeca84e15cd225a21a3814ed757c}{task\+Two} ()
+\item 
+void \hyperlink{barrier_8cpp_aa4369cdbe2a8fd71298ebc51e4323f15}{barrier\+Function} (std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ mutex, std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ barrier1, std\+::shared\+\_\+ptr$<$ \hyperlink{class_semaphore}{Semaphore} $>$ barrier2, int num\+\_\+of\+\_\+threads)
+\item 
+int \hyperlink{barrier_8cpp_a8392a352b0ea88fdb8bde83f8d9f657b}{get\+Input} ()
+\item 
+int \hyperlink{barrier_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{barrier_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{count} = 0
+\item 
+bool \hyperlink{barrier_8cpp_aa01a2837d1549bf695813f441b38a849}{condition} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{barrier.\+cpp@{barrier.\+cpp}!barrier\+Function@{barrier\+Function}}
+\index{barrier\+Function@{barrier\+Function}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{barrier\+Function(std\+::shared\+\_\+ptr$<$ Semaphore $>$ mutex, std\+::shared\+\_\+ptr$<$ Semaphore $>$ barrier1, std\+::shared\+\_\+ptr$<$ Semaphore $>$ barrier2, int num\+\_\+of\+\_\+threads)}{barrierFunction(std::shared_ptr< Semaphore > mutex, std::shared_ptr< Semaphore > barrier1, std::shared_ptr< Semaphore > barrier2, int num_of_threads)}}]{\setlength{\rightskip}{0pt plus 5cm}void barrier\+Function (
+\begin{DoxyParamCaption}
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{mutex, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{barrier1, }
+\item[{std\+::shared\+\_\+ptr$<$ {\bf Semaphore} $>$}]{barrier2, }
+\item[{int}]{num\+\_\+of\+\_\+threads}
+\end{DoxyParamCaption}
+)}\hypertarget{barrier_8cpp_aa4369cdbe2a8fd71298ebc51e4323f15}{}\label{barrier_8cpp_aa4369cdbe2a8fd71298ebc51e4323f15}
+creates a barrier for the threads for 2 functions \index{barrier.\+cpp@{barrier.\+cpp}!get\+Input@{get\+Input}}
+\index{get\+Input@{get\+Input}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{get\+Input()}{getInput()}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Input (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{barrier_8cpp_a8392a352b0ea88fdb8bde83f8d9f657b}{}\label{barrier_8cpp_a8392a352b0ea88fdb8bde83f8d9f657b}
+Only allows the user to input integer $<$ the value of characters in a string
+
+$<$ individual character in a string
+
+$<$ gets each individual character from a srting of characters
+
+$<$ checks A\+S\+C\+II values of inputted characters for integers and breaks when value is equal to 10(enter key) of the chracter is not a integer
+
+$<$ puts each character back together creating a string \index{barrier.\+cpp@{barrier.\+cpp}!main@{main}}
+\index{main@{main}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{main(void)}{main(void)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{barrier_8cpp_a840291bc02cba5474a4cb46a9b9566fe}{}\label{barrier_8cpp_a840291bc02cba5474a4cb46a9b9566fe}
+$<$ mutex lock
+
+$<$ first barrier
+
+$<$ second barrier
+
+$<$ allows the user to set the amount of threads created
+
+$<$ array of threads \index{barrier.\+cpp@{barrier.\+cpp}!task\+One@{task\+One}}
+\index{task\+One@{task\+One}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{task\+One()}{taskOne()}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+One (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{barrier_8cpp_a4d4cd4393ba562b64d603d628d837994}{}\label{barrier_8cpp_a4d4cd4393ba562b64d603d628d837994}
+diaplays the first function in the barrier being executed \index{barrier.\+cpp@{barrier.\+cpp}!task\+Two@{task\+Two}}
+\index{task\+Two@{task\+Two}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{task\+Two()}{taskTwo()}}]{\setlength{\rightskip}{0pt plus 5cm}void task\+Two (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{barrier_8cpp_a6f85eeca84e15cd225a21a3814ed757c}{}\label{barrier_8cpp_a6f85eeca84e15cd225a21a3814ed757c}
+diaplays the second function in the barrier being executed 
+
+\subsection{Variable Documentation}
+\index{barrier.\+cpp@{barrier.\+cpp}!condition@{condition}}
+\index{condition@{condition}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{condition}{condition}}]{\setlength{\rightskip}{0pt plus 5cm}bool condition = true}\hypertarget{barrier_8cpp_aa01a2837d1549bf695813f441b38a849}{}\label{barrier_8cpp_aa01a2837d1549bf695813f441b38a849}
+\index{barrier.\+cpp@{barrier.\+cpp}!count@{count}}
+\index{count@{count}!barrier.\+cpp@{barrier.\+cpp}}
+\subsubsection[{\texorpdfstring{count}{count}}]{\setlength{\rightskip}{0pt plus 5cm}int count = 0}\hypertarget{barrier_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}{}\label{barrier_8cpp_ad43c3812e6d13e0518d9f8b8f463ffcf}
+$<$ global count to display barrier function is working correctly condition for while loop in \hyperlink{barrier_8cpp_aa4369cdbe2a8fd71298ebc51e4323f15}{barrier\+Function()} 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wait',['Wait',['../class_semaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda',1,'Semaphore']]]
+  ['main',['main',['../barrier_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe',1,'barrier.cpp']]]
 ];

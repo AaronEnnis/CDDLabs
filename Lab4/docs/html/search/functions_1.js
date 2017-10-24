@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['signal',['Signal',['../class_semaphore.html#a86f92f738b4486439b296d8e235895f2',1,'Semaphore']]]
+  ['getinput',['getInput',['../barrier_8cpp.html#a8392a352b0ea88fdb8bde83f8d9f657b',1,'barrier.cpp']]]
 ];
