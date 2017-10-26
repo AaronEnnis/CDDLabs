@@ -8,54 +8,21 @@
 */
 /*!< global count to display barrier function is working correctly*/
 int count = 0;
-/*!< condition for while loop in barrierFunction()*/
+
 bool condition = true;
 
-/*! diaplays the first function in the barrier being executed */
-void taskOne(){
+/*! displays the first function in the barrier being executed */
+void Barrier::taskOne(){
   std::cout << "first " << count << "\n";
 }
 
-/*! diaplays the second function in the barrier being executed */
-void taskTwo(){
+/*! diplays the second function in the barrier being executed */
+void Barrier::taskTwo(){
   std::cout << "second " << count << "\n";
 }
 
-/*! creates a barrier for the threads for 2 functions */ 
-void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads){
-  
-    while(condition){
-      
-    mutex->Wait();
-    count++;
-    if(count == num_of_threads){
-      barrier2->Wait();
-      barrier1->Signal();      
-    }
-    taskOne();
-    mutex->Signal();
-    barrier1->Wait();
-    barrier1->Signal();  
-
-    mutex->Wait();
-    count--;
-    if(count == 0){
-      barrier1->Wait();
-      barrier2->Signal();
-      condition = false;
-    }
-    taskTwo();
-    mutex->Signal();
-    barrier2->Wait();
-    barrier2->Signal();
-    
-  }
-
-
-}
-
 /*!Only allows the user to input integer */
-int getInput()
+int Barrier::getInput()
 {
 	/*!< the value of characters in a string*/
 	int value = 0;
@@ -92,4 +59,58 @@ int getInput()
 	}
 	return value;
 }
+
+/*! creates a barrier for the threads for 2 functions */ 
+void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads){
+  
+    while(condition){
+      
+    mutex->Wait();
+    count++;
+    if(count == num_of_threads){
+      barrier2->Wait();
+      barrier1->Signal();      
+    }
+    taskOne();
+    mutex->Signal();
+    barrier1->Wait();
+    barrier1->Signal();  
+
+    mutex->Wait();
+    count--;
+    if(count == 0){
+      barrier1->Wait();
+      barrier2->Signal();
+      condition = false;
+    }
+    taskTwo();
+    mutex->Signal();
+    barrier2->Wait();
+    barrier2->Signal();
+    
+  }
+}
+
+void Barrier::run(){
+  /*!< mutex lock*/
+  std::shared_ptr<Semaphore> mutex( new Semaphore(1)); 
+  /*!< first barrier*/
+  std::shared_ptr<Semaphore> barrier1( new Semaphore(0)); 
+  /*!< second barrier*/
+  std::shared_ptr<Semaphore> barrier2( new Semaphore(1)); 
+
+    /*!< allows the user to set the amount of threads created*/
+    int num_of_threads = getInput();
+    std::vector<std::thread> threadsArray(num_of_threads);
+    
+    for(int i = 0; i < threadsArray.size(); i++){
+      threadsArray[i]=std::thread(barrierFunction,mutex,barrier1,barrier2,threadsArray.size());
+  }
+  for(int i = 0; i < threadsArray.size(); i++){
+      threadsArray[i].join();
+  }
+}
+
+
+
 

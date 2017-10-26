@@ -14,11 +14,16 @@
 class Barrier
 {
 private:
-    int count; /*!< Holds the thread count */
+ 
+  // bool condition = true; /*! condition for loop in barrierFunction()*/
+  // int count = 0; /*!< Holds the thread count */
+  // int num_of_threads; /*! Number of threads in array*/
     void taskOne();
     void taskTwo();
     int getInput();
+    void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads);
+    
 
 public:
-    void barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads);
+    void run();
 };

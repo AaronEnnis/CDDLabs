@@ -8,29 +8,14 @@
 */
 
 int main(void){
+
+  std::cout << "input number of threads\n";
+  std::cout << "Type in 0 the exit\n";
   
-    /*!< mutex lock*/
-  // std::shared_ptr<Semaphore> mutex( new Semaphore(1)); 
-  /*!< first barrier*/
-  //std::shared_ptr<Semaphore> barrier1( new Semaphore(0)); 
-  /*!< second barrier*/
-  //std::shared_ptr<Semaphore> barrier2( new Semaphore(1)); 
+  /*!< Creates a barrier object */
+  std::shared_ptr<Barrier> barrierObj( new Barrier); 
 
-  //std::cout << "input number of threads" << std::endl;
-  //std::cout << "Type in 0 the exit\n";
-  /*!< allows the user to set the amount of threads created*/
-  //int num_of_threads = getInput(); 
-  /*!< array of threads */
-  //std::vector<std::thread> threadsArray(num_of_threads); 
-
-  //for(int i = 0; i < threadsArray.size(); i++){
-  //threadsArray[i]=std::thread(barrierFunction,mutex,barrier1,barrier2, threadsArray.size());
-  //}
-
-  //for(int i = 0; i < threadsArray.size(); i++){
-  //threadsArray[i].join();
-  //}
+  barrierObj->run();
   
- 
   return 0;
 }
