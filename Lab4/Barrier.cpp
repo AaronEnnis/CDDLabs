@@ -11,14 +11,24 @@ int count = 0;
 
 bool condition = true;
 
-/*! displays the first function in the barrier being executed */
-void Barrier::taskOne(){
-  std::cout << "first " << count << "\n";
+Barrier::Barrier(){
+
 }
 
-/*! diplays the second function in the barrier being executed */
-void Barrier::taskTwo(){
-  std::cout << "second " << count << "\n";
+Barrier::Barrier(int num_of_threads){
+  std::shared_ptr<Semaphore> mutex( new Semaphore(1));
+  std::shared_ptr<Semaphore> barrier1( new Semaphore(0));
+  std::shared_ptr<Semaphore> barrier2( new Semaphore(0));
+  std::vector<std::thread> threadsArray(num_of_threads);
+
+  // barrier_ptr = &Barrier::barrierFunction;
+
+  for(int i = 0; i < threadsArray.size(); i++){
+    threadsArray[i]=std::thread(&Barrier::barrierFunction,this,mutex,barrier1,barrier2,threadsArray.size());
+   }
+  for(int i = 0; i < threadsArray.size(); i++){
+     threadsArray[i].join();
+   }
 }
 
 /*!Only allows the user to input integer */
@@ -71,7 +81,7 @@ void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<
       barrier2->Wait();
       barrier1->Signal();      
     }
-    taskOne();
+    //taskOne();
     mutex->Signal();
     barrier1->Wait();
     barrier1->Signal();  
@@ -83,7 +93,7 @@ void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<
       barrier2->Signal();
       condition = false;
     }
-    taskTwo();
+    //taskTwo();
     mutex->Signal();
     barrier2->Wait();
     barrier2->Signal();
@@ -91,24 +101,17 @@ void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<
   }
 }
 
-void Barrier::run(){
-  /*!< mutex lock*/
-  std::shared_ptr<Semaphore> mutex( new Semaphore(1)); 
-  /*!< first barrier*/
-  std::shared_ptr<Semaphore> barrier1( new Semaphore(0)); 
-  /*!< second barrier*/
-  std::shared_ptr<Semaphore> barrier2( new Semaphore(1)); 
+void Barrier::run(){ 
 
     /*!< allows the user to set the amount of threads created*/
-    int num_of_threads = getInput();
-    std::vector<std::thread> threadsArray(num_of_threads);
+    //int num_of_threads = getInput();
     
-    for(int i = 0; i < threadsArray.size(); i++){
-      threadsArray[i]=std::thread(barrierFunction,mutex,barrier1,barrier2,threadsArray.size());
-  }
-  for(int i = 0; i < threadsArray.size(); i++){
-      threadsArray[i].join();
-  }
+  //  for(int i = 0; i < this->threadsArray.size(); i++){
+  //  this->threadsArray[i]=std::thread(barrierFunction,mutex,barrier1,barrier2,this->threadsArray.size());
+  //}
+  //for(int i = 0; i < this->threadsArray.size(); i++){
+    //   this->threadsArray[i].join();
+    //}
 }
 
 
