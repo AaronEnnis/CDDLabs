@@ -15,16 +15,16 @@ Barrier::Barrier(){
 
 }
 
-Barrier::Barrier(int num_of_threads){
+Barrier::Barrier(int num_of_threads, &task1, int task2){
   std::shared_ptr<Semaphore> mutex( new Semaphore(1));
   std::shared_ptr<Semaphore> barrier1( new Semaphore(0));
   std::shared_ptr<Semaphore> barrier2( new Semaphore(0));
   std::vector<std::thread> threadsArray(num_of_threads);
-
-  // barrier_ptr = &Barrier::barrierFunction;
+  task1_ptr = task1;
+  task2_ptr = task2;
 
   for(int i = 0; i < threadsArray.size(); i++){
-    threadsArray[i]=std::thread(&Barrier::barrierFunction,this,mutex,barrier1,barrier2,threadsArray.size());
+    threadsArray[i]=std::thread(&Barrier::barrierFunction,this,mutex,barrier1,barrier2,threadsArray.size(), *task1_ptr, *task2_ptr);
    }
   for(int i = 0; i < threadsArray.size(); i++){
      threadsArray[i].join();
@@ -71,7 +71,7 @@ int Barrier::getInput()
 }
 
 /*! creates a barrier for the threads for 2 functions */ 
-void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads){
+void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<Semaphore> barrier1, std::shared_ptr<Semaphore> barrier2, int num_of_threads, &task1, &task2){
   
     while(condition){
       
@@ -81,7 +81,7 @@ void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<
       barrier2->Wait();
       barrier1->Signal();      
     }
-    //taskOne();
+    this->*task1_ptr(this->count);
     mutex->Signal();
     barrier1->Wait();
     barrier1->Signal();  
@@ -93,7 +93,7 @@ void Barrier::barrierFunction(std::shared_ptr <Semaphore> mutex,std::shared_ptr<
       barrier2->Signal();
       condition = false;
     }
-    //taskTwo();
+    this->*task2_ptr(this->count);
     mutex->Signal();
     barrier2->Wait();
     barrier2->Signal();

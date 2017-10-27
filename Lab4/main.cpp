@@ -20,7 +20,7 @@ void taskTwo(int count){
 int main(void){
 
   /*!< pointer to taskOne() function*/
-  void (*task1)();
+  void (*task1)(int);
   /*!< pointer to taskTwo() function*/
   void (*task2)();
   task1 = &taskOne;
@@ -32,7 +32,7 @@ int main(void){
   std::cin >> num;
   
   /*!< Creates a barrier object */
-  Barrier barrierObj(num); 
+  Barrier barrierObj(num, *task1, task2); 
 
   //barrierObj->run();
   
