@@ -8,33 +8,20 @@
 */
 
 /*! displays the first function in the barrier being executed */
-void taskOne(int count){
-  std::cout << "first " << count << "\n";
+void taskOne(std::shared_ptr <Barrier> barrierObj){
+  std::cout << "first " << std::endl;
 }
 
 /*! diplays the second function in the barrier being executed */
-void taskTwo(int count){
-  std::cout << "second " << count << "\n";
+void taskTwo(std::shared_ptr <Barrier> barrierObj){
+  std::cout << "second " << std::endl;
 }
 
 int main(void){
-
-  /*!< pointer to taskOne() function*/
-  void (*task1)(int);
-  /*!< pointer to taskTwo() function*/
-  void (*task2)();
-  task1 = &taskOne;
-  task2 = &taskTwo;
-  std::cout << "input number of threads\n";
-  std::cout << "Type in 0 the exit\n";
-
-  int num;
-  std::cin >> num;
-  
-  /*!< Creates a barrier object */
-  Barrier barrierObj(num, *task1, task2); 
-
-  //barrierObj->run();
+  int count;
+  std::cin >> count;
+  std::vector<thread> threadArray(count);
+  std::shared_ptr<Barrier> barrierOBJ( new Barrier(threadArray.size()));
   
   return 0;
 }
