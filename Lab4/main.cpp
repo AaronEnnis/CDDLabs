@@ -1,4 +1,6 @@
 #include "Barrier.h"
+#include <thread>
+#include <vector>
 
 /*! \class Barrier
     \brief An Implementation of a barrier Using Semaphores 
@@ -20,7 +22,7 @@ void taskTwo(std::shared_ptr <Barrier> barrierObj){
 int main(void){
   int count;
   std::cin >> count;
-  std::vector<thread> threadArray(count);
+  std::vector<std::thread> threadArray(count);
   std::shared_ptr<Barrier> barrierOBJ( new Barrier(threadArray.size()));
   
   return 0;

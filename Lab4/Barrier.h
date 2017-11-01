@@ -1,9 +1,6 @@
 #include "Semaphore.h"
 #include <iostream>
 #include <stdio.h>
-#include <cstdlib>
-#include <thread>
-#include <vector>
 
 /*! \class Barrier
     \brief A Barrier Implementation
@@ -16,17 +13,17 @@ class Barrier
 private:
 
   int count;
-  //needs thread num
+  int threadNum;
   std::shared_ptr<Semaphore> mutex;
   std::shared_ptr<Semaphore> barrier1;
   std::shared_ptr<Semaphore> barrier2;
+  bool condition;
 
 public:
 
-  Barrier::Barrier();
-  Barrier::~Barrier();
-  Barrier::Barrier(int count);
-  Barrier::~Barrier(int count);
+  Barrier();
+  ~Barrier();
+  Barrier(int count);
   void setCount(int count);
   int getCount();
   void waitForAll();

@@ -9,15 +9,20 @@
 /*! Barrier constructor*/
 Barrier::Barrier(){
 
-  this->count = count0;
+  this->count = 0;
+  condition = true;
+  threadNum = 0;
   std::shared_ptr<Semaphore> mutex(new Semaphore(1));
   std::shared_ptr<Semaphore> barrier1(new Semaphore(0));
   std::shared_ptr<Semaphore> barrier2(new Semaphore(0));
+
 }
 /*! Barrier with parameter constructor*/
 Barrier::Barrier(int count){
 
   this->count = count;
+  condition = true;
+  threadNum = 0;
   std::shared_ptr<Semaphore> mutex(new Semaphore(1));
   std::shared_ptr<Semaphore> barrier1(new Semaphore(0));
   std::shared_ptr<Semaphore> barrier2(new Semaphore(0));
@@ -26,17 +31,14 @@ Barrier::Barrier(int count){
 Barrier::~Barrier(){
 
 }
-/*! Barrier with parameter deconstructor*/
-Barrier::~Barrier(int count){
 
-}
 /*! sets count value*/
-void setCount(int count){
+void Barrier::setCount(int x){
 
-  this->count = count;
+  this->count = x;
 }
 /*! returns count value*/
-int getCount(){
+int Barrier::getCount(){
 
   return this->count;
 }
