@@ -17,7 +17,6 @@ private:
   std::shared_ptr<Semaphore> mutex;
   std::shared_ptr<Semaphore> barrier1;
   std::shared_ptr<Semaphore> barrier2;
-  bool condition;
 
 public:
 

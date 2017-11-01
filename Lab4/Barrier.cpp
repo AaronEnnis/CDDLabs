@@ -10,7 +10,6 @@
 Barrier::Barrier(){
 
   this->count = 0;
-  condition = true;
   threadNum = 0;
   std::shared_ptr<Semaphore> mutex(new Semaphore(1));
   std::shared_ptr<Semaphore> barrier1(new Semaphore(0));
@@ -21,7 +20,6 @@ Barrier::Barrier(){
 Barrier::Barrier(int count){
 
   this->count = count;
-  condition = true;
   threadNum = 0;
   std::shared_ptr<Semaphore> mutex(new Semaphore(1));
   std::shared_ptr<Semaphore> barrier1(new Semaphore(0));
@@ -45,33 +43,29 @@ int Barrier::getCount(){
 
 /*! creates a barrier for the threads for 2 functions */ 
 void Barrier::waitForAll(){
-  
-    while(condition){
-      
-    mutex->Wait();
-    threadNum++;
-    if(threadNum == count){
-      barrier2->Wait();
-      barrier1->Signal();      
-    }
-    
-    mutex->Signal();
-    barrier1->Wait();
-    barrier1->Signal();  
-
-    mutex->Wait();
-    threadNum--;
-    if(threadNum == 0){
-      barrier1->Wait();
-      barrier2->Signal();
-      condition = false;
-    }
-    
-    mutex->Signal();
+       
+  mutex->Wait();
+  threadNum++;
+  if(threadNum == count){
     barrier2->Wait();
-    barrier2->Signal();
-    
+    barrier1->Signal();      
   }
+    
+  mutex->Signal();
+  barrier1->Wait();
+  barrier1->Signal();  
+
+  mutex->Wait();
+  threadNum--;
+  if(threadNum == 0){
+    barrier1->Wait();
+    barrier2->Signal();
+  }
+    
+  mutex->Signal();
+  barrier2->Wait();
+  barrier2->Signal();
+
 }
 
 

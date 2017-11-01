@@ -23,7 +23,16 @@ int main(void){
   int count;
   std::cin >> count;
   std::vector<std::thread> threadArray(count);
-  std::shared_ptr<Barrier> barrierOBJ( new Barrier(threadArray.size()));
+  std::shared_ptr<Barrier> barrierObj( new Barrier(threadArray.size()));
+
+  for(int i=0; i < threadArray.size(); i++){
+    threadArray[i]=std::thread(taskOne,barrierObj);
+    threadArray[i]=std::thread(taskTwo,barrierObj);
+  }
+
+  for(int i = 0; i < threadArray.size(); i++){
+    threadArray[i].join();
+  }
   
   return 0;
 }
