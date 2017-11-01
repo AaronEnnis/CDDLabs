@@ -18,6 +18,8 @@ private:
   std::shared_ptr<Semaphore> mutex;
   std::shared_ptr<Semaphore> barrier1;
   std::shared_ptr<Semaphore> barrier2;
+  void phaseOne();
+  void phaseTwo();
 
 public:
 
@@ -26,6 +28,6 @@ public:
   Barrier(int count);
   void setCount(int count);
   int getCount();
-  bool waitForAll();
+  void waitForAll();
   
 };

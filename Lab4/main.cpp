@@ -12,14 +12,9 @@
 /*! displays the first function in the barrier being executed */
 void task(std::shared_ptr<Barrier> barrierObj){
 
-  if(!barrierObj->waitForAll()){
   std::cout << "first " << std::endl;
-  }
   
-  
-  if(barrierObj->waitForAll()){
-    std::cout << "second" << std::endl;
-  }
+  std::cout << "second" << std::endl;
 }
 
 int main(void){
