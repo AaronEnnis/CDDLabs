@@ -12,9 +12,8 @@
 /*! displays the first function in the barrier being executed */
 void task(std::shared_ptr<Barrier> barrierObj){
 
-  barrierObj->phaseOne();
   std::cout << "first " << std::endl;
-  //barrierObj->phaseTwo();
+  barrierObj->waitForAll();
   std::cout << "second" << std::endl;
 }
 
@@ -23,9 +22,9 @@ int main(void){
   /*!< An array of threads*/
   std::vector<std::thread> threadArray(5);
   /*!< Pointer to barrier object*/
-  std::shared_ptr<Barrier> barrierObj( new Barrier());
+  std::shared_ptr<Barrier> barrierObj( new Barrier);
 
-  barrierObj->setCount(5);
+  barrierObj->setCount(1);
 
   for(int i=0; i < threadArray.size(); i++){
     threadArray[i]=std::thread(task,barrierObj);
