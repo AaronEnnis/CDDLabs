@@ -51,9 +51,11 @@ void Barrier::phaseOne(){
 
   if (threadNum == count){
     barrier1->Signal();
+    barrier2->Wait();
   }
   mutex->Signal();
   barrier1->Wait();
+  barrier1->Signal();
 
 
 }
@@ -64,10 +66,12 @@ void Barrier::phaseTwo(){
   threadNum--;
 
   if (count == 0){
+    barrier1->Wait();
     barrier2->Signal();
   }
   mutex->Signal();
   barrier2->Wait();
+  barrier2->Signal();
 }
 
 /*! waits for all the threads before starting second half of code*/ 

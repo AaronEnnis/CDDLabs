@@ -12,8 +12,9 @@
 /*! displays the first function in the barrier being executed */
 void task(std::shared_ptr<Barrier> barrierObj){
 
+  barrierObj->phaseOne();
   std::cout << "first " << std::endl;
-  
+  //barrierObj->phaseTwo();
   std::cout << "second" << std::endl;
 }
 
