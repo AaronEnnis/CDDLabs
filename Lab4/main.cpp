@@ -1,3 +1,7 @@
+//Author: Aaron Ennis
+//Program name: barrier
+//Purpose: create re-useable barrier class
+
 #include "Barrier.h"
 #include <thread>
 #include <vector>
@@ -13,6 +17,7 @@
 void task(std::shared_ptr<Barrier> barrierObj){
 
   std::cout << "first " << std::endl;
+  /*! this calls the function in the barrier to wait on all of the threads before moving on*/
   barrierObj->waitForAll();
   std::cout << "second" << std::endl;
   barrierObj->waitForAll();
@@ -27,7 +32,7 @@ int main(void){
   std::vector<std::thread> threadArray(5);
   /*!< Pointer to barrier object*/
   std::shared_ptr<Barrier> barrierObj( new Barrier);
-
+  /*! sets the count in the barrier class*/
   barrierObj->setCount(threadArray.size());
 
   for(int i=0; i < threadArray.size(); i++){

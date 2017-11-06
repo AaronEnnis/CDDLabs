@@ -1,3 +1,7 @@
+//Author: Aaron Ennis
+//Program name: signal
+//Purpose: create an example of a rendezvous
+
 #include "Semaphore.h"
 #include <iostream>
 #include <thread>

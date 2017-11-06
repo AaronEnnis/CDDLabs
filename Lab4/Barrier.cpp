@@ -1,3 +1,7 @@
+//Author: Aaron Ennis
+//Program name: barrier
+//Purpose: create re-useable barrier class
+
 #include "Barrier.h"
 
 /*! \class Barrier
@@ -11,7 +15,7 @@ Barrier::Barrier(){
 
   count = 0;
   threadNum = 0;
-  reset = 0;
+  turnstile = 0;
   mutex=std::make_shared<Semaphore>(1);
   barrier1=std::make_shared<Semaphore>(0);
   barrier2=std::make_shared<Semaphore>(1);
@@ -21,7 +25,7 @@ Barrier::Barrier(){
 Barrier::Barrier(int count){
 
   this->count = count;
-  reset = 0;
+  turnstile = 0;
   threadNum = 0;
   mutex=std::make_shared<Semaphore>(1);
   barrier1=std::make_shared<Semaphore>(0);
@@ -43,10 +47,10 @@ int Barrier::getCount(){
   return this->count;
 }
 
-/*! waits for all the threads before starting second half of code*/ 
+/*! waits for all the threads and checks which turnstile is active*/ 
 void Barrier::waitForAll(){
 
-  if(reset == 0){
+  if(turnstile == 0){
     phaseOne();
   }
   else{
@@ -54,7 +58,7 @@ void Barrier::waitForAll(){
   }
 
 }
-
+/*! this is the first turnstile for the barrier*/
 void Barrier::phaseOne(){
 
   mutex->Wait();
@@ -62,13 +66,13 @@ void Barrier::phaseOne(){
   if(threadNum == count){
     barrier2->Wait();
     barrier1->Signal();
-    reset = 1;
+    turnstile = 1;
   }
   mutex->Signal();
   barrier1->Wait();
   barrier1->Signal();
 }
-
+/*! this is the second turnstile for the barrier*/
 void Barrier::phaseTwo(){
 
   mutex->Wait();
@@ -76,7 +80,7 @@ void Barrier::phaseTwo(){
   if(threadNum == 0){
     barrier1->Wait();
     barrier2->Signal();
-    reset = 0;
+    turnstile = 0;
   }
   mutex->Signal();
   barrier2->Wait();
