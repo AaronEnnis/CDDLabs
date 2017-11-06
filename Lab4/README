@@ -1,0 +1,5 @@
+This an example of a reusable barrier class for multi-threaded programming. 
+It includes it's own Doxygen code which can be compiled andon a HTML form. The Doxygen can be compiled in terminal and ran also in terminal.
+It can also be ran with it's index file which is in the HTML folder within the Doxygen file. 
+This program can be excuted using the makefile provided in the folder. This uses the g++ compiler and has features that allow you to delete
+all of the object files or use the GDB debugger. 
