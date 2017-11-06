@@ -14,10 +14,13 @@ private:
 
   int count;
   int threadNum;
-  bool condition;
+  int reset;
   std::shared_ptr<Semaphore> mutex;
   std::shared_ptr<Semaphore> barrier1;
-  // std::shared_ptr<Semaphore> barrier2;
+  std::shared_ptr<Semaphore> barrier2;
+
+  void phaseOne();
+  void phaseTwo();
 
 public:
 

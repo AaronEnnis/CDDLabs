@@ -15,6 +15,10 @@ void task(std::shared_ptr<Barrier> barrierObj){
   std::cout << "first " << std::endl;
   barrierObj->waitForAll();
   std::cout << "second" << std::endl;
+  barrierObj->waitForAll();
+  std::cout << "third" << std::endl;
+  barrierObj->waitForAll();
+  std::cout << "forth" << std::endl;
 }
 
 int main(void){
@@ -24,7 +28,7 @@ int main(void){
   /*!< Pointer to barrier object*/
   std::shared_ptr<Barrier> barrierObj( new Barrier);
 
-  barrierObj->setCount(1);
+  barrierObj->setCount(threadArray.size());
 
   for(int i=0; i < threadArray.size(); i++){
     threadArray[i]=std::thread(task,barrierObj);
