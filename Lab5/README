@@ -1,0 +1,6 @@
+This an example of a producer consumer relationship. 
+It includes it's own Doxygen code which can be compiled and on a HTML form. The Doxygen can be compiled in terminal and ran also in terminal.
+It can also be ran with it's index file which is in the HTML folder within the Doxygen file. The HTML for the Doxygen code can be displayed through the Makefile with the command "make DOC".
+This program can be excuted using the makefile provided in the folder. This uses the g++ compiler and has features that allow you to delete
+all of the object files or use the GDB debugger. 
+
