@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['taskone',['taskOne',['../barrier_8cpp.html#a4d4cd4393ba562b64d603d628d837994',1,'barrier.cpp']]],
-  ['tasktwo',['taskTwo',['../barrier_8cpp.html#a6f85eeca84e15cd225a21a3814ed757c',1,'barrier.cpp']]]
+  ['wait',['Wait',['../class_semaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda',1,'Semaphore']]],
+  ['waitforall',['waitForAll',['../class_barrier.html#a59b259f25f6acdc5f943398035d2d87a',1,'Barrier']]]
 ];

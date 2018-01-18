@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getinput',['getInput',['../barrier_8cpp.html#a8392a352b0ea88fdb8bde83f8d9f657b',1,'barrier.cpp']]]
+  ['getcount',['getCount',['../class_barrier.html#a471bfe5ce54384baa7dbd195ae3a7b30',1,'Barrier']]]
 ];
