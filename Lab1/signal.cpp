@@ -13,19 +13,13 @@
 */
 /*! displays a message first*/
 void taskOne(std::shared_ptr<Semaphore> theSemaphore){
-  std::cout <<"I ";
-  std::cout << "must ";
-  std::cout << "print ";
-  std::cout << "first"<<std::endl;
+  std::cout <<"I must print first"<<std::endl;
   theSemaphore->Signal();
 }
 /*! displays a message second*/
 void taskTwo(std::shared_ptr<Semaphore> theSemaphore){
   theSemaphore->Wait();
-  std::cout <<"This ";
-  std::cout << "will ";
-  std::cout << "appear ";
-  std::cout << "second"<<std::endl;
+  std::cout <<"This will appear second "<<std::endl;
 }
 
 int main(void){
