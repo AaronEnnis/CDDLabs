@@ -1,6 +1,6 @@
 //Author: Aaron Ennis
 //Program name: signal
-//Purpose: create an example of a signalling with semaphores
+//Purpose: create an example of a signaling with semaphores
 
 #include "Semaphore.h"
 #include <iostream>

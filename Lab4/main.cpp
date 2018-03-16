@@ -1,6 +1,6 @@
 //Author: Aaron Ennis
 //Program name: barrier
-//Purpose: create re-useable barrier class
+//Purpose: create re-usable barrier class
 
 #include "Barrier.h"
 #include <thread>
