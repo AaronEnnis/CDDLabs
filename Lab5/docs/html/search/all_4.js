@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['wait',['Wait',['../class_semaphore.html#a72aabebf026e3a8b1f3e4d0fa8ee1eda',1,'Semaphore']]],
-  ['waitforall',['waitForAll',['../class_barrier.html#a59b259f25f6acdc5f943398035d2d87a',1,'Barrier']]]
+  ['printarray',['PrintArray',['../main_8cpp.html#a592b091d8e3b080475a6b7e2629b100f',1,'main.cpp']]],
+  ['producerconsumer',['ProducerConsumer',['../class_producer_consumer.html',1,'']]],
+  ['producermethod',['ProducerMethod',['../main_8cpp.html#ab754589000ec936fdbcc466ac71366bb',1,'main.cpp']]]
 ];

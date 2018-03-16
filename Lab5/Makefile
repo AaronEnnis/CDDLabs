@@ -5,10 +5,10 @@ INDEX_SRC = docs/html/index.html
 INDEX = firefox $(INDEX_SRC)
 
 %.o: %.cpp
-	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS) 
+	$(CC) -c -o $@ $< $(CFLAGS) $(DEBUGFLAGS)
 
-ALL: Semaphore.o Barrier.o main.o
-	$(CC) -o program Semaphore.o Barrier.o main.o $(CFLAGS) $(DEBUGFLAGS)
+ALL: Semaphore.o SafeBuffer.o main.o
+	$(CC) -o ProducerConsumer Semaphore.o SafeBuffer.o  main.o $(CFLAGS) $(DEBUGFLAGS) 
 
 DEBUG: DEBUGFLAGS = -g -O0
 DEBUG: ALL
@@ -20,4 +20,3 @@ DOC: ALL
 
 CLEAN:
 	rm *.o
-

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7ebarrier',['~Barrier',['../class_barrier.html#a401f40e73302009b305904ffc7825304',1,'Barrier']]]
+  ['remove',['Remove',['../class_safe_buffer.html#a7a8dc1f39f036cad435bb388d2693c66',1,'SafeBuffer']]]
 ];

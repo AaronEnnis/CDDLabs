@@ -1,6 +1,6 @@
 #include <mutex>
 #include <condition_variable>
-
+#include <chrono>
 /*! \class Semaphore
     \brief A Semaphore Implementation
 
@@ -16,8 +16,10 @@ private:
 
 public:
     Semaphore(unsigned int uiCount=0)
-      : m_uiCount(uiCount) { };
+          : m_uiCount(uiCount) { };
     void Wait();
+    template< typename R,typename P >
+    bool Wait(const std::chrono::duration<R,P>& crRelTime);
     void Signal();
 
 };

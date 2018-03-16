@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['barrier',['Barrier',['../class_barrier.html',1,'']]]
+  ['producerconsumer',['ProducerConsumer',['../class_producer_consumer.html',1,'']]]
 ];
