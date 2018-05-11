@@ -13,23 +13,19 @@
 */
 /*! displays a message that is split in to 2 sections to show how a rendezvous works*/
 void taskOne(std::shared_ptr<Semaphore> firstSem,std::shared_ptr<Semaphore>  secondSem){
-  std::cout <<"I ";
-  std::cout << "must ";
+  std::cout <<"I must ";
   secondSem->Signal();
   firstSem->Wait();
-  std::cout << "print ";
-  std::cout << "first"<<std::endl;
+  std::cout << "print first "<<std::endl;
   secondSem->Signal();
 }
 /*! displays a message that is split in to 2 sections to show how a rendezvous works*/
 void taskTwo(std::shared_ptr<Semaphore> firstSem, std::shared_ptr<Semaphore> secondSem){
   secondSem->Wait();
-  std::cout <<"This ";
-  std::cout << "will ";
+  std::cout <<"This will ";
   firstSem->Signal();
   secondSem->Wait();
-  std::cout << "appear ";
-  std::cout << "second"<<std::endl;
+  std::cout << "appear second " <<std::endl;
 }
 
 int main(void){
