@@ -8,6 +8,10 @@ You can compile each lab by typing in to the terminal in the working directory, 
 
 If you type 'make CLEAN' in to the terminal, the make file will remove all of the object files in the folder.
 
+# To run
+
+After the executable is created, type "./" + the executable file name to run the program.
+
 # Create Doxygen
 
 First you need to open the Doxyfile and edit OUTPUT_DIRECTORY to the working directory + "/docs" (i.e /home/aaron/Desktop/Wator/docs)
